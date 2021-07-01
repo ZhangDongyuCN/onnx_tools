@@ -1,37 +1,40 @@
+[TOC]
+
 # onnx_tools
 
-#### 介绍
-ONNX相关工具
+简介：onnx模型迁移工具，包含以下工具。
 
-#### 软件架构
-软件架构说明
+## gener_core
 
+简介：SE开发的改图工具，支持onnx、tf。
 
-#### 安装教程
+## make_onnx_node
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+简介：构造onnx节点、测试节点精度。
 
-#### 使用说明
+## numpy_data_cmp
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+简介：逐个对比两个numpy的每一个数据，输出每个数据的误差，和最后统计的最大误差以及误差比。
 
-#### 参与贡献
+## one_step_accuracy_cmp
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+简介：全流程精度比对工具，基于《开发辅助工具指南（推理）》的《7 精度比对工具使用指南》，串起流程，只需一步操作即可生成中间数据、对比结果。
 
+## onnx_interface
 
-#### 特技
+简介：一套操作简单的onnx改图接口。
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+功能：
+
+1. 修改常量节点（Initializer）的名字、数据类型、数据值
+2. 新增常量节点（Initializer）
+3. 保存常量节点（Initializer）的数据
+4. 向模型中插入节点
+5. 从模型中截取单节点、从模型中截取一段模型
+6. 获取模型输入、输出、中间tensor、Initializer的信息（包括：tensor名字、shape、类型）
+7. dump模型所有节点的数据
+8. ...
+
+## pyacl_infer
+
+简介：一套封装好的python acl推理脚本，类似benchmark，支持动态shape，支持推理时间统计。
