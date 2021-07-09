@@ -1,17 +1,5 @@
 [TOC]
 
-# onnx_tools
-
-简介：onnx模型迁移工具，包含以下工具。
-
-## gener_core
-
-简介：SE开发的改图工具，支持onnx、tf。
-
-## make_onnx_node
-
-简介：构造onnx节点、测试节点精度。
-
 ## numpy_data_cmp
 
 简介：逐个对比两个numpy的每一个数据，输出每个数据的误差，和最后统计的最大误差以及误差比。
