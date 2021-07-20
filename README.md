@@ -26,3 +26,7 @@
 ## pyacl_infer
 
 简介：一套封装好的python acl推理脚本，类似benchmark，支持动态shape，支持推理时间统计。
+
+## run_profiling
+
+简介：封装好的简单易用的profiling性能分析工具。
