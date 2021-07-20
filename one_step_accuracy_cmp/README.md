@@ -44,12 +44,8 @@ env: |
 2、输入如下命令，开始生成dump数据并对比：
 
 ```shell
-python one_step_accuracy_cmp.py -c config.yaml
+python one_step_accuracy_cmp.py config.yaml
 ```
-
-**注意：**
-
-第一次运行会生成修改后的onnx模型，om转成的json文件，以后运行直接加载缓存，不会重复生成。若运行报错，请删除这两个缓存文件后重试。
 
 **dump生成的目录说明：**
 
