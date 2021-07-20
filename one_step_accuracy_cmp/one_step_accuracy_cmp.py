@@ -5,7 +5,7 @@ import argparse
 import numpy as np
 import onnxruntime as rt
 from shutil import rmtree, move
-from os import makedirs, system, listdir, mkdir, remove, rename
+from os import makedirs, system, listdir, mkdir, remove
 from os.path import exists, join, basename, splitext
 from skl2onnx.helpers.onnx_helper import enumerate_model_node_outputs, select_model_inputs_outputs
 
@@ -160,13 +160,6 @@ def accuracy_cmp(config, om_dump_dir_name, om_dump_raw_path, onnx_dump_path):
         raise RuntimeError('[ERROR] Run msaccucmp.py failed, please check !')
 
 
-def one_step_accuracy_cmp(config):
-    om_dump_raw_path, om_dump_dir_name = dump_om_data(config)
-    onnx_dump_path = onnx_dump_data(config, om_dump_dir_name)
-    accuracy_cmp(config, om_dump_dir_name, om_dump_raw_path, onnx_dump_path)
-    move_dir(config, om_dump_raw_path, om_dump_dir_name)
-
-
 def move_dir(config, om_dump_raw_path, om_dump_dir_name):
     dump_save_path = config['dump_save_path']
     npu_device_id = config['npu_device_id']
@@ -177,6 +170,13 @@ def move_dir(config, om_dump_raw_path, om_dump_dir_name):
     move(join(dump_save_path, om_dump_dir_name + '_onnx'), join(aggregate_dir, 'onnx_dump_npy_data'))
     move(join(dump_save_path, om_dump_dir_name + '_cmp'), join(aggregate_dir, 'compare_result'))
     rmtree(join(aggregate_dir, str(npu_device_id)))
+
+
+def one_step_accuracy_cmp(config):
+    om_dump_raw_path, om_dump_dir_name = dump_om_data(config)
+    onnx_dump_path = onnx_dump_data(config, om_dump_dir_name)
+    accuracy_cmp(config, om_dump_dir_name, om_dump_raw_path, onnx_dump_path)
+    move_dir(config, om_dump_raw_path, om_dump_dir_name)
 
 
 if __name__ == '__main__':
