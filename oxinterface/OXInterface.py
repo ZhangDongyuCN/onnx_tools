@@ -858,8 +858,6 @@ class OXGraph:
         for out in enumerate_model_node_outputs(old_onnx_model):
             output.append(out)
         new_onnx_model = select_model_inputs_outputs(old_onnx_model, outputs=output)
-        onnx_save_path = os.path.join(dump_data_save_path, "./temp.onnx")
-        save_onnx_model(new_onnx_model, onnx_save_path)
 
         # 获取输入数据
         input_data_dict = {}
@@ -867,8 +865,8 @@ class OXGraph:
             input_data_dict[input_data_info['model_input_name']] = np.load(input_data_info['npy_file_path'])
 
         # 推理得到输出
-        sess = onnxruntime.InferenceSession(onnx_save_path)
-        os.remove(onnx_save_path)
+        model_byte = new_onnx_model.SerializeToString()
+        sess = onnxruntime.InferenceSession(model_byte)
         output_name = [node.name for node in sess.get_outputs()]
         res = sess.run(output_name, input_data_dict)
 
